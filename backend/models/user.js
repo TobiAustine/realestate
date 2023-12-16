@@ -7,12 +7,12 @@ const userSchema =new mongoose.Schema({
         unique: true,
     },
     email:{
-        typr:String,
+        type:String,
         required: true,
         unique: true
     },
    password:{
-        typr:String,
+        type:String,
         required: true,
         
     }
@@ -22,4 +22,4 @@ const userSchema =new mongoose.Schema({
 
 const userModel = mongoose.model('Users', userSchema)
 
-export default userModel
+module.exports = userModel
