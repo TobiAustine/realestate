@@ -5,6 +5,7 @@ import SignIn from './Pages/SignIn'
 import SignUp from './Pages/SignUp'
 import Profile from './Pages/Profile'
 import Header from './Components/Header'
+
 const App = () => {
   return (
     <BrowserRouter>

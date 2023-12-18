@@ -11,7 +11,7 @@ const Header = () => {
 
 
         <form className="bg-tertiary p-2 rounded-md flex justify-between items-center">
-              <input type="text" placeholder="Search..." className="bg-transparent text-white placeholder:text-white placeholder:italic focus:outline-none w-24 sm:w-64 " />
+              <input type="text" placeholder="Search..." className="bg-transparent text-white placeholder:text-white placeholder:italic focus:outline-none w-28 sm:w-64 " />
 
               <IoSearchSharp size='1.2rem' className="text-white"/>
         </form>

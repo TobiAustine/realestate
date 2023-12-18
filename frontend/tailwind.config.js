@@ -13,7 +13,8 @@ export default {
         black:'#000000',
         purple:'#233253',
         lightPurple:'#4d547a',
-        darkPurple:'#061836'
+        darkPurple:'#061836',
+        red: '#9b2226'
       }
     },
   },

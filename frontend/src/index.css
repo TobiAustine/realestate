@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+input:focus{
+  outline: none;
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
