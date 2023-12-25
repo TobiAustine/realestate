@@ -64,7 +64,7 @@ const [error, setError] = useState(null)
         </form>
         <div className="text-center mt-5 flex flex-col w-[90%] sm:w-[50%]  mx-auto">
         <button className="bg-red text-white rounded-lg p-3 hover:bg-tertiary">CONTINUE WITH GOOGLE</button>
-         <p> Have an account? <span className="text-red font-bold underline"><Link to='/signin'>Sign innnn</Link> </span></p>
+         <p> Have an account? <span className="text-red font-bold underline"><Link to='/signin'>Sign in</Link> </span></p>
         </div>
         {error && <p className="text-red text-center font-bold">{error}</p> }
     </div>
