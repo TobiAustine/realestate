@@ -1,11 +1,13 @@
 import { Link,useNavigate } from "react-router-dom" 
-
+import { useDispatch} from "react-redux"
 import { useState } from "react"
 import axios from "axios"
+import { signIn,signInError,signInSuccess } from "../redux/user/userSlice"
 
 
 
 const SignIn = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   //const url = 'http://localhost:8000'
@@ -27,25 +29,32 @@ const [error, setError] = useState(null)
   })
   } 
 
-  const register = async(e) =>{
-
-    try {
-       e.preventDefault()
-    setIsLoading(true)
+  const Login = async(e) =>{
+        e.preventDefault()
+    try {  
+     
+    //setIsLoading(true)
+    dispatch(signIn())
  const response =  await axios.post(`${url}/auth/login`, formData)
  setIsLoading(false)
- setError(null)
+ //setError(null)
+ dispatch(signInSuccess(response))
     alert(`Login Successful`)
     navigate('/')
     console.log(response.data);
  
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        setError(error.response.data.message);
-        setIsLoading(false)
+       // setError(error.response.data.message);
+       // setIsLoading(false)
+       dispatch(signInError(error.response.data.message))
       } else {
-        setError('An unexpected error occurred.');
+        setError(error.response.data.message);
+        dispatch(signInError(error.response.data.message))
       }
+
+
+
       setIsLoading(false)
     }
    } 
@@ -54,7 +63,7 @@ const [error, setError] = useState(null)
   return (
     <div>
         <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
-        <form className="flex flex-col gap-4 w-[90%] sm:w-[50%]  mx-auto" onSubmit={register}>
+        <form className="flex flex-col gap-4 w-[90%] sm:w-[50%]  mx-auto" onSubmit={Login}>
           {/* <input type="text"  id="username"   value={formData.username} onChange = {handleChange} placeholder="Username" className="border p-3 rounded-lg" required/> */}
           <input type="email"  id="email" value={formData.email} onChange = {handleChange} placeholder="email" className="border p-3 rounded-lg" required/>
           <input type="password"  id="password" value={formData.password} onChange = {handleChange} placeholder="Password" className="border p-3 rounded-lg" required/>

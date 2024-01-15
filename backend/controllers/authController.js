@@ -40,14 +40,14 @@ const login = async(req,res, next) =>{
             //check if user exists
             const userExists = await userModel.findOne({email})
             if(!userExists){
-                res.status(400)
+                res.status(404)
                 throw new Error('User does not exist, please sign up!!!')
                 return next(errorHandler(404, 'User does not exist, please sign up!!!' ) )
             }
             
             const comparePassword = bcrypt.compareSync(password, userExists.password )
                 if(!comparePassword){
-                    res.status(400)
+                    res.status(404)
                     throw new Error('Wrong credentials, please try again!!!')
                     return next(errorHandler(404, 'Wrong credentials, please try again!!!' ) )     
             } 
