@@ -3,6 +3,7 @@ import { useDispatch} from "react-redux"
 import { useState } from "react"
 import axios from "axios"
 import { signIn,signInError,signInSuccess } from "../redux/user/userSlice"
+import Oauth from "../Components/Oauth"
 
 
 
@@ -37,7 +38,6 @@ const [error, setError] = useState(null)
     dispatch(signIn())
  const response =  await axios.post(`${url}/auth/login`, formData)
  setIsLoading(false)
- //setError(null)
  dispatch(signInSuccess(response))
     alert(`Login Successful`)
     navigate('/')
@@ -70,9 +70,10 @@ const [error, setError] = useState(null)
           <button disabled={isLoading} className="bg-tertiary text-white rounded-lg p-3 hover:bg-red">
             {isLoading ? 'LOADING...' : 'SIGN IN'}
            </button>
+            <Oauth/>
         </form>
         <div className="text-center mt-5 flex flex-col w-[90%] sm:w-[50%]  mx-auto">
-        <button className="bg-red text-white rounded-lg p-3 hover:bg-tertiary">CONTINUE WITH GOOGLE</button>
+      
          <p> Do not have an account? <span className="text-red font-bold underline"><Link to='/signup'>Sign Up</Link> </span></p>
         </div>
         {error && <p className="text-red text-center font-bold">{error}</p> }

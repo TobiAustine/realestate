@@ -71,6 +71,32 @@ const login = async(req,res, next) =>{
     }
 }
 
+const google = async(req,res, next) =>{
+    const {username, email, photo} = req.body
+    try {
+        const user = await userModel.findOne({email})
+    if(user){
+            const token = jwt.sign({id: user._id}, process.env.JWT, {expiresIn:'5d'})
+            const {password, ...rest} = user._doc
+            res.cookie('token', token, {
+               httpOnly: true, 
+            }).status(200).json(rest)
+    }else{
+        const newPassword = Math.random().toString(36).slice(-8)
+        const hashedPassword = bcrypt.hashSync(newPassword, 20)
+        const newUser = await userModel.create({username: username.split(" ").join("").toLowerCase() + Math.random().toString(36).slice(-4), email, password: hashedPassword, photo})
+
+        const {password, ...user} = newUser._doc
+
+        const token = jwt.sign({id: newUser._id}, process.env.JWT, {expiresIn:'5d'})
+        res.cookie('token', token, {httpOnly: true}).status(200).json(user)
+
+    }
+     
+    } catch (error) {
+        
+    }
+}
 
 
-module.exports = {signup, login}
+module.exports = {signup, login, google}

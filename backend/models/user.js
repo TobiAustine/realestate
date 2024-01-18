@@ -15,8 +15,11 @@ const userSchema =new mongoose.Schema({
         type:String,
         required: true,
         
-    }
-    
+    },
+    photo:{
+        type:String,
+        default: 'https://shorturl.at/dlDG3'
+    },
 }, {timestamps:true})
 
 
